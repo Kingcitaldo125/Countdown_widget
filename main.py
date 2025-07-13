@@ -39,9 +39,11 @@ def main():
 		# Use a granular fraction that can render contiguous lines from 0 to twopi * (ctr / seconds) radians
 		j = fraction
 		while j < lp:
+			# Calculate the angle of the end point of the line being drawn
 			endpoint_x = math.cos(j)
 			endpoint_y = math.sin(j) * -1
 
+			# Move the x,y points from the origin to screen space
 			cx = endpoint_x * wid_size + screen_midpoint
 			cy = endpoint_y * wid_size + screen_midpoint
 
