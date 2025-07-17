@@ -17,7 +17,7 @@ def main():
 
 	font_controller = FontController()
 
-	secondtext = RenderText(font_controller, "white", orange)
+	secondtext = RenderText(font_controller, orange, "black")
 	secondtext.update_x(screen_midpoint)
 	secondtext.update_y(screen_midpoint)
 
@@ -27,7 +27,7 @@ def main():
 
 	twopi = math.pi * 2
 	fraction = 0.025
-	seconds = 5
+	seconds = 10
 	ctr = 0
 	for i in range(seconds, -1, -1):
 		# Draw the background and background circle
@@ -49,6 +49,14 @@ def main():
 
 			pygame.draw.line(screen, orange, smpoint, (cx, cy), 2)
 			j += fraction
+
+		# Render the circle covering up the 'slice of pi' orange circle
+		# This gives the illusion of a curved bar/line filling up with orange over time
+		startpoint = math.hypot(smpoint[0],smpoint[1])
+		endpoint = math.hypot(smpoint[0] + wid_size,smpoint[1] + wid_size)
+		# Radius os this circle is 60% of the radius of the 'slice of pi' orange circle
+		orange_circle_rad = abs(startpoint - endpoint) * 0.6
+		pygame.draw.circle(screen, "black", smpoint, orange_circle_rad)
 
 		# Render the seconds as a text box to the middle of the circle
 		secondtext.update_text(str(0 if i < 0 else i))
