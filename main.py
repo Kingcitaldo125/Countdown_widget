@@ -29,7 +29,8 @@ def main():
 	orange_circle_rad = abs(startpoint - endpoint) * 0.6
 
 	twopi = math.pi * 2
-	fraction = 0.025
+	fraction = 0.02
+	start = math.pi / 2
 	seconds = 10
 	ctr = 0
 	for i in range(seconds, -1, -1):
@@ -38,9 +39,9 @@ def main():
 		pygame.draw.circle(screen, "white", smpoint, wid_size)
 
 		# Render the 'slice of pi' that consumes ctr/seconds percent of the whole circle
-		lp = lerp(0,twopi,ctr/seconds)
+		lp = lerp(start,start + twopi,ctr/seconds)
 		# Use a granular fraction that can render contiguous lines from 0 to twopi * (ctr / seconds) radians
-		j = fraction
+		j = start
 		while j < lp:
 			# Calculate the angle of the end point of the line being drawn
 			endpoint_x = math.cos(j)
