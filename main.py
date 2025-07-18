@@ -24,6 +24,9 @@ def main():
 	# Make the size of the parts of the widget tangential to the window size
 	wid_size = screen_size // 10
 	smpoint = (screen_midpoint,screen_midpoint)
+	startpoint = math.hypot(smpoint[0],smpoint[1])
+	endpoint = math.hypot(smpoint[0] + wid_size,smpoint[1] + wid_size)
+	orange_circle_rad = abs(startpoint - endpoint) * 0.6
 
 	twopi = math.pi * 2
 	fraction = 0.025
@@ -52,10 +55,7 @@ def main():
 
 		# Render the circle covering up the 'slice of pi' orange circle
 		# This gives the illusion of a curved bar/line filling up with orange over time
-		startpoint = math.hypot(smpoint[0],smpoint[1])
-		endpoint = math.hypot(smpoint[0] + wid_size,smpoint[1] + wid_size)
 		# Radius os this circle is 60% of the radius of the 'slice of pi' orange circle
-		orange_circle_rad = abs(startpoint - endpoint) * 0.6
 		pygame.draw.circle(screen, "black", smpoint, orange_circle_rad)
 
 		# Render the seconds as a text box to the middle of the circle
